@@ -1,4 +1,71 @@
 package com.carRentalSystem.service.impl;
 
-public class CarServiceImpl {
+import com.carRentalSystem.Exceptions.CarNotFoundException;
+import com.carRentalSystem.domain.Car;
+import com.carRentalSystem.dto.request.CarRequest;
+import com.carRentalSystem.dto.response.CarResponse;
+import com.carRentalSystem.repositories.CarRepository;
+import com.carRentalSystem.service.CarService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class CarServiceImpl implements CarService {
+
+    @Autowired
+    private CarRepository carRepository;
+    @Override
+    public CarResponse create(CarRequest request){
+        Car car = new Car();
+        //id isnt supposed to be set
+        car.setMake(request.getMake());
+        car.setModel(request.getModel());
+        car.setDescription(request.getDescription());
+        car.setMaximumOccupancy(request.getMaximumOccupancy());
+        car.setDailyRentalRate(request.getDailyRentalRate());
+        car = carRepository.save(car); //gow is this true
+
+//I can use this instead of above but code would be
+//        CarResponse response = new CarResponse();
+//        response.setId(car.getId());
+//        response.setMake(car.getMake());
+//        response.setModel(car.getMake());
+//        response.setDailyRentalRate( car.getDailyRentalRate());
+//        response.setDescription(car.getDescription());
+//        response.setMaximumOccupancy( car.getMaximumOccupancy());
+//        return response;
+
+
+      return CarResponse.from(car);
+
+    }
+    @Override
+    public List<CarResponse> findAll(){
+        return carRepository.findAll()
+                .stream()
+                .map(CarResponse::from)
+                .toList();
+    }
+//    fIND CAR BY ID
+//    the return type is always CarResponse
+
+    @Override
+    public CarResponse findById(Long carId){
+        Car car = carRepository.findById(carId).orElseThrow(
+                ()-> new CarNotFoundException(String.format("Car with id %s not found", carId)));
+        //return carRepository.findById(carId);
+        return CarResponse.from(car);
+
+    }
+    @Override
+    public List<CarResponse>searchedCars(String make){ //this can be a keyword
+        List<Car>carList = carRepository.searchCars(make); //this is the keyword
+        return carList.stream()
+                .map(CarResponse::from)
+                .collect(Collectors.toList());
+    }
+
 }

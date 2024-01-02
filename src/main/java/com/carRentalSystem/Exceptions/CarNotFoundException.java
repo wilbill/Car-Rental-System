@@ -1,23 +1,23 @@
 package com.carRentalSystem.Exceptions;
 
-public class ProductNotFoundException extends RuntimeException {
-    public ProductNotFoundException(){
+public class CarNotFoundException extends RuntimeException {
+    public CarNotFoundException(){
         super();
     }
 
-    public ProductNotFoundException(String message) {
+    public CarNotFoundException(String message) {
         super(message);
     }
 
-    public ProductNotFoundException(String message, Throwable cause) {
+    public CarNotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public ProductNotFoundException(Throwable cause) {
+    public CarNotFoundException(Throwable cause) {
         super(cause);
     }
 
-    public ProductNotFoundException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public CarNotFoundException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

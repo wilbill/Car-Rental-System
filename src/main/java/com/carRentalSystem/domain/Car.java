@@ -29,4 +29,8 @@ public class Car {
         this.dailyRentalRate = dailyRentalRate;
         this.maximumOccupancy = maximumOccupancy;
     }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
