@@ -1,7 +1,7 @@
 package com.carRentalSystem.controller;
 
+import com.carRentalSystem.dto.request.CreateCarRequest; //used when creating the car controller in post requests
 import com.carRentalSystem.dto.response.CarResponse;
-import com.carRentalSystem.repositories.CarRepository;
 import com.carRentalSystem.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,23 +17,32 @@ public class CarController {
     @Autowired
     private CarService carService; // We use a service interface in the controller //
 
-    //
-    @GetMapping
+    @GetMapping //works fine
     public ResponseEntity<?> getAllCars(){
         List<CarResponse> carResponseList = carService.findAll();
         return new ResponseEntity<>(carResponseList, HttpStatus.OK);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // needs a pathvariable, id
     public ResponseEntity<?> getCarById(@PathVariable Long id){
         CarResponse carResponse = carService.findById(id);
         return new ResponseEntity<>(carResponse, HttpStatus.OK);
     }
-
-    @GetMapping("/search")
+    @GetMapping("/search") //needs requestParam, string keyword..
     public ResponseEntity<?> searchCars(@RequestParam String keyword){
         List<CarResponse> carSearchList = carService.searchedCars(keyword);
         return new ResponseEntity<>(carSearchList, HttpStatus.OK);
     }
+
+    @PostMapping //Creating a new car, u need a requestbody, request-dto-param, create mtd in service
+    public ResponseEntity<?>CreateCar(@RequestBody CreateCarRequest carRequest){
+        CarResponse carResponse = carService.create(carRequest);
+        return new ResponseEntity<>(carResponse, HttpStatus.CREATED);
+    }
+
+//    @PutMapping("/{id}") //
+//    public ResponseEntity<?>updateCar(){
+//
+//    }
 
 
 

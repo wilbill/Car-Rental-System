@@ -3,7 +3,7 @@ package com.carRentalSystem.dto.request;
 import lombok.Data;
 
 @Data //means i have getters, setters, constructors (AllArguments n noArguments constructors)
-public class CarRequest {
+public class CreateCarRequest {
     private Long id;
     private String make;
     private String model;

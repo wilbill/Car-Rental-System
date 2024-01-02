@@ -2,7 +2,7 @@ package com.carRentalSystem.service.impl;
 
 import com.carRentalSystem.Exceptions.CarNotFoundException;
 import com.carRentalSystem.domain.Car;
-import com.carRentalSystem.dto.request.CarRequest;
+import com.carRentalSystem.dto.request.CreateCarRequest;
 import com.carRentalSystem.dto.response.CarResponse;
 import com.carRentalSystem.repositories.CarRepository;
 import com.carRentalSystem.service.CarService;
@@ -18,7 +18,7 @@ public class CarServiceImpl implements CarService {
     @Autowired
     private CarRepository carRepository;
     @Override
-    public CarResponse create(CarRequest request){
+    public CarResponse create(CreateCarRequest request){
         Car car = new Car();
         //id isnt supposed to be set
         car.setMake(request.getMake());
