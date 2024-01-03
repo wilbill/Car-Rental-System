@@ -6,10 +6,12 @@ import com.carRentalSystem.dto.request.CreateCarRequest;
 import com.carRentalSystem.dto.response.CarResponse;
 import com.carRentalSystem.repositories.CarRepository;
 import com.carRentalSystem.service.CarService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -68,4 +70,32 @@ public class CarServiceImpl implements CarService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public CarResponse update(Long carId, CreateCarRequest request){
+        Optional<Car> optionalCar = carRepository.findById(carId);
+        if(optionalCar.isPresent()){
+            Car car = optionalCar.get();
+
+            //update the product properties
+            car.setMake(request.getMake());
+            car.setModel(request.getModel());
+            car.setDescription(request.getDescription());
+            car.setMaximumOccupancy(request.getMaximumOccupancy());
+            car.setDailyRentalRate(request.getDailyRentalRate());
+            carRepository.save(car); //gow is this true
+            return CarResponse.from(car);
+        }
+        else{
+            //throw new EntityNotFoundException("Car not found");  //in-built exception
+            throw new CarNotFoundException(String.format("Car id %s not found", carId)); //custom error
+        }
+    }
+
+    @Override
+    public void deleteById(Long carId){
+        Car car = carRepository.findById(carId).orElseThrow(
+                ()-> new CarNotFoundException(String.format("Cant delete, car with id %s not found", carId))
+        );
+        carRepository.delete(car);
+    }
 }

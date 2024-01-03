@@ -32,18 +32,21 @@ public class CarController {
         List<CarResponse> carSearchList = carService.searchedCars(keyword);
         return new ResponseEntity<>(carSearchList, HttpStatus.OK);
     }
-
     @PostMapping //Creating a new car, u need a requestbody, request-dto-param, create mtd in service
     public ResponseEntity<?>CreateCar(@RequestBody CreateCarRequest carRequest){
         CarResponse carResponse = carService.create(carRequest);
         return new ResponseEntity<>(carResponse, HttpStatus.CREATED);
     }
-
-//    @PutMapping("/{id}") //
-//    public ResponseEntity<?>updateCar(){
-//
-//    }
-
-
+    @PutMapping("/{carId}") //update a car, we need its id && pathVariable, requestBody..
+    //in other words, it's a combination of a post request and a get request where we get a single CarBy id
+    public ResponseEntity<?>updateCar(@PathVariable Long carId, @RequestBody CreateCarRequest carRequest){
+        CarResponse carResponse = carService.update(carId, carRequest); //mtd needs to be defined in the service interface n implemented in service
+        return new ResponseEntity<>(carResponse, HttpStatus.OK);
+    }
+    @DeleteMapping("/{carId}")
+    public ResponseEntity<?>deleteCar(@PathVariable Long carId){
+        carService.deleteById(carId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 }

@@ -6,9 +6,11 @@ import com.carRentalSystem.dto.response.CarResponse;
 import java.util.List;
 
 public interface CarService {
-    CarResponse create(CreateCarRequest request);
-    List<CarResponse> findAll(); //
-
-    CarResponse findById(Long carId); //finding a car by id
+    CarResponse create(CreateCarRequest request); //to be used by controller, but implemented in service, abstract mtd in service interface
+    List<CarResponse> findAll(); //get a list of all cars in the controller
+    CarResponse findById(Long carId); //get a single car method in controller
     List<CarResponse>searchedCars(String keyword);
+    CarResponse update(Long id, CreateCarRequest request);
+
+    void deleteById(Long carId);
 }

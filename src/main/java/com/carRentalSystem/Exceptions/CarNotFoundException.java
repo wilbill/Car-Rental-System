@@ -1,5 +1,7 @@
 package com.carRentalSystem.Exceptions;
 
+import jakarta.persistence.EntityNotFoundException;
+
 public class CarNotFoundException extends RuntimeException {
     public CarNotFoundException(){
         super();
@@ -20,4 +22,5 @@ public class CarNotFoundException extends RuntimeException {
     public CarNotFoundException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
+
 }
