@@ -1,5 +1,6 @@
 package com.carRentalSystem.domain;
 
+import com.carRentalSystem.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

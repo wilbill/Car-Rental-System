@@ -44,7 +44,7 @@ public class SecurityConfiguration {
                             authConfig
                             //.requestMatchers("/actuator/**").hasAuthority("ADMIN")
                                     .requestMatchers("/api/v1/auth/**", "/static/**", "/auth/login").permitAll() //Me-added api/v1/auth
-                                    //Securing mgt end-point to be accessed by only admin and amanager
+                                    //Securing mgt end-point to be accessed by only admin and a manager
                                     .requestMatchers("/api/v1/management/**").hasAnyRole(ADMIN.name(), MANAGER.name())
 
                                     //Now securing the different end-points
