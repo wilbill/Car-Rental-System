@@ -1,5 +1,6 @@
 package com.carRentalSystem.domain.user;
 
+import com.carRentalSystem.domain.Orders;
 import com.carRentalSystem.token.Token;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,9 @@ public class User implements UserDetails{
     private String lastName;
     private String email;
     private String password;
+    @OneToMany(mappedBy = "user")
+    private List<Orders> orders;  //added later
+
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
 

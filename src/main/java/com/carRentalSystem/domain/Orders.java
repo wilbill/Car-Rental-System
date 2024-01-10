@@ -15,7 +15,8 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+@Table(name="orders") //order is a keyword, so wont save to db
+public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +25,7 @@ public class Order {
     @JoinColumn(name="Order_User")
     private User user;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "orders", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Item>items = new ArrayList<>();
 
 

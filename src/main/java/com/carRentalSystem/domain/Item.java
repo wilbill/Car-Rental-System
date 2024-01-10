@@ -18,9 +18,15 @@ public class Item {
     private AuditData auditData = new AuditData();
     @ManyToOne
     @JoinColumn(name="Item_Order")
-    private Order order;
+    private Orders orders;
     public Item(){
-
     }
 
+    public Item(Car car, LocalDate checkOutDate, LocalDate checkinDate, AuditData auditData, Orders orders) {
+        this.car = car;
+        this.checkOutDate = checkOutDate;
+        this.checkinDate = checkinDate;
+        this.auditData = auditData;
+        this.orders = orders;
+    }
 }

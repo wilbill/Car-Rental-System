@@ -19,4 +19,6 @@ public class State {
     @ManyToOne
     @JoinColumn(name="state_country")
     private Country country;
+    @Embedded
+    private AuditData auditData = new AuditData();
 }
