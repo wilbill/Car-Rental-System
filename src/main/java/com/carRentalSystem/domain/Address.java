@@ -1,11 +1,10 @@
 package com.carRentalSystem.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.antlr.v4.runtime.misc.NotNull;
+import org.hibernate.annotations.NotFound;
+
 @Data //Means all setters, getters and constructors(noargs, allargs) will be entered
 @Entity
 public class Address {
@@ -17,4 +16,9 @@ public class Address {
     private String line2;
     private String city;
     private String postalCode;
+    @OneToOne //its obvious it uses a joinColumn,
+    private State state;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private AddressType addressType;
 }

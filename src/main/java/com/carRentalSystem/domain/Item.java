@@ -19,8 +19,13 @@ public class Item {
     @ManyToOne
     @JoinColumn(name="Item_Order")
     private Order order;
-    public Item(){
-
+    public Item(){}
+    //I added this constructor,
+    public Item(Car car, LocalDate checkOutDate, LocalDate checkinDate, AuditData auditData, Order order) {
+        this.car = car;
+        this.checkOutDate = checkOutDate;
+        this.checkinDate = checkinDate;
+        this.auditData = auditData;
+        this.order = order;
     }
-
 }

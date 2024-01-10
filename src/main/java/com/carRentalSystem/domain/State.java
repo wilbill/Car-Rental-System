@@ -15,8 +15,14 @@ public class State {
 
     @Column(name="state_name", nullable=false)
     private String name;
-
+    //added this part
+    //============================================//
     @ManyToOne
     @JoinColumn(name="state_country")
     private Country country;
+
+    @Embedded
+    private AuditData auditData = new AuditData();
+    //==========================================//
+
 }

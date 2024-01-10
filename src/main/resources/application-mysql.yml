@@ -3,7 +3,7 @@ spring:
   #    init:
   #      mode: always
   datasource:
-    url: jdbc:mysql://${DB_HOST:localhost}:3306/rental?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/rentaldbcar?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true
     username: root
     password: valuvalu
     driver-class-name: com.mysql.cj.jdbc.Driver
