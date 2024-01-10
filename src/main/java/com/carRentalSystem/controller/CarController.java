@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController //its a controller..subtype restController(combination of responsebody + controller )
-@RequestMapping("/cars") //defines base url, stackoverflow: maps request url (/cars) to this controller method(s)
+@RequestMapping("/api/v1/cars") //defines base url, stackoverflow: maps request url (/cars) to this controller method(s)
 public class CarController {
 
     @Autowired
