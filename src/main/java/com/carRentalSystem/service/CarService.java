@@ -11,6 +11,5 @@ public interface CarService {
     CarResponse findById(Long carId); //get a single car method in controller
     List<CarResponse>searchedCars(String keyword);
     CarResponse update(Long id, CreateCarRequest request);
-
     void deleteById(Long carId);
 }
