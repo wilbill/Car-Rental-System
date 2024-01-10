@@ -21,7 +21,7 @@ public class Order {
     private Long id;
 
     @ManyToOne//by default eager, join-table, but I want a join column, so
-    @JoinColumn//
+    @JoinColumn(name="order_user")
     private User user;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
