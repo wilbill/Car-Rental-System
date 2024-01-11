@@ -19,6 +19,25 @@ public class CarServiceImpl implements CarService {
 
     @Autowired
     private CarRepository carRepository;
+
+    //this is for findAll
+    @Override
+    public List<CarResponse> findAll(){
+        return carRepository.findAll()
+                .stream()
+                .map(CarResponse::from)
+                .toList();
+    }
+    //Method for finding by id
+    @Override
+    public CarResponse findById(Long carId){
+        Car car = carRepository.findById(carId).orElseThrow(
+                ()-> new CarNotFoundException(String.format("Car with id %s not found", carId)));
+        //return carRepository.findById(carId);
+        return CarResponse.from(car);
+    }
+
+    //this is for post requests
     @Override
     public CarResponse create(CreateCarRequest request){
         Car car = new Car();
@@ -44,24 +63,11 @@ public class CarServiceImpl implements CarService {
       return CarResponse.from(car);
 
     }
-    @Override
-    public List<CarResponse> findAll(){
-        return carRepository.findAll()
-                .stream()
-                .map(CarResponse::from)
-                .toList();
-    }
+
 //    fIND CAR BY ID
 //    the return type is always CarResponse
 
-    @Override
-    public CarResponse findById(Long carId){
-        Car car = carRepository.findById(carId).orElseThrow(
-                ()-> new CarNotFoundException(String.format("Car with id %s not found", carId)));
-        //return carRepository.findById(carId);
-        return CarResponse.from(car);
 
-    }
     @Override
     public List<CarResponse>searchedCars(String make){ //this can be a keyword
         List<Car>carList = carRepository.searchCars(make); //this is the keyword

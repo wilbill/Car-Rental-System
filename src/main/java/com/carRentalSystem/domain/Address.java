@@ -19,7 +19,4 @@ public class Address {
     @NotNull
     @Enumerated(EnumType.STRING)
     private AddressType addressType;
-
-
-
 }

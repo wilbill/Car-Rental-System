@@ -27,7 +27,5 @@ public class Orders {
 
     @OneToMany(mappedBy = "orders", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Item>items = new ArrayList<>();
-
-
-
+    
 }
