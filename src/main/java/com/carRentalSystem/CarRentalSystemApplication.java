@@ -2,7 +2,7 @@ package com.carRentalSystem;
 
 import com.carRentalSystem.domain.Car;
 import com.carRentalSystem.domain.CarType;
-import com.carRentalSystem.domain.Orders;
+import com.carRentalSystem.domain.Booking;
 import com.carRentalSystem.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -30,10 +30,10 @@ public class CarRentalSystemApplication implements CommandLineRunner {
 	carRepository.saveAll(cars);
 
 		//this is for orders
-		List<Orders>orders = Arrays.asList(
-				new Orders(),
-				new Orders(),
-				new Orders()
+		List<Booking>bookings = Arrays.asList(
+				new Booking(),
+				new Booking(),
+				new Booking()
 		);
 
 

@@ -1,6 +1,6 @@
 package com.carRentalSystem.domain.user;
 
-import com.carRentalSystem.domain.Orders;
+import com.carRentalSystem.domain.Booking;
 import com.carRentalSystem.token.Token;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 @Data //Getters, setter, toString, equals, hashcode
 @Builder //find its difference from setter
-@Table(name="_user)")
+@Table(name="_user")
 @AllArgsConstructor
 @NoArgsConstructor
 //check need for @RequiredAllArgsConstructor
@@ -31,7 +31,7 @@ public class User implements UserDetails{
     private String email;
     private String password;
     @OneToMany(mappedBy = "user")
-    private List<Orders> orders;  //added later
+    private List<Booking> bookingList;  //added later
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;

@@ -17,16 +17,16 @@ public class Item {
     @Embedded
     private AuditData auditData = new AuditData();
     @ManyToOne
-    @JoinColumn(name="Item_Order")
-    private Orders orders;
+    @JoinColumn(name="Item_Booking")
+    private Booking booking;
     public Item(){
     }
 
-    public Item(Car car, LocalDate checkOutDate, LocalDate checkinDate, AuditData auditData, Orders orders) {
+    public Item(Car car, LocalDate checkOutDate, LocalDate checkinDate, AuditData auditData, Booking booking) {
         this.car = car;
         this.checkOutDate = checkOutDate;
         this.checkinDate = checkinDate;
         this.auditData = auditData;
-        this.orders = orders;
+        this.booking = booking;
     }
 }

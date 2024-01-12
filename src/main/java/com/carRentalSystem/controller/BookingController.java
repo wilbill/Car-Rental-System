@@ -1,8 +1,7 @@
 package com.carRentalSystem.controller;
 
-import com.carRentalSystem.domain.Orders;
-import com.carRentalSystem.dto.response.OrderResponse;
-import com.carRentalSystem.service.OrderService;
+import com.carRentalSystem.dto.response.BookingResponse;
+import com.carRentalSystem.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,20 +14,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/order")
-public class OrderController {
+public class BookingController {
     @Autowired //we use service in a controller
-    private OrderService orderService;
+    private BookingService bookingService;
 
     @GetMapping
     public ResponseEntity<?>getOrders(){
-        List<OrderResponse> ordersList = orderService.findAll(); //this is the mtd implemented
+        List<BookingResponse> ordersList = bookingService.findAll(); //this is the mtd implemented
         return new ResponseEntity<>(ordersList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?>getOrderById(@PathVariable Long id){
-        OrderResponse order = orderService.findById(id); //this is the mtd implemented
+        BookingResponse order = bookingService.findById(id); //this is the mtd implemented
         return new ResponseEntity<>(order, HttpStatus.OK);
-
     }
+
 }

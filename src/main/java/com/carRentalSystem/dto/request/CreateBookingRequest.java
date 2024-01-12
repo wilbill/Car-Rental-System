@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 @Data
-public class CreateOrderRequest {
+public class CreateBookingRequest {
     private Long id;
     private User user;
     private List<Item> items = new ArrayList<>();

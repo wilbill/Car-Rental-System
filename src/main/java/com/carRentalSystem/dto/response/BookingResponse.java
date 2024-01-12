@@ -2,27 +2,25 @@
 package com.carRentalSystem.dto.response;
 
 import com.carRentalSystem.domain.Item;
-import com.carRentalSystem.domain.Orders;
+import com.carRentalSystem.domain.Booking;
 import com.carRentalSystem.domain.user.User;
-import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data // getters, setters, equals(), hashCode(), and toString()
-public class OrderResponse {
+public class BookingResponse {
     private Long id;
     private User user;
     private List<Item> items = new ArrayList<>();
 
-    public static OrderResponse from(Orders orders){
-        OrderResponse orderResponse = new OrderResponse();
-        orderResponse.id = orders.getId();
-        orderResponse.user = orders.getUser();
-        orderResponse.items = orders.getItems();
+    public static BookingResponse from(Booking booking){
+        BookingResponse bookingResponse = new BookingResponse();
+        bookingResponse.id = booking.getId();
+        bookingResponse.user = booking.getUser();
+        bookingResponse.items = booking.getItems();
         //orderResponse.setItems();
-        return orderResponse;
+        return bookingResponse;
     }
 }
