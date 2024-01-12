@@ -2,6 +2,7 @@ package com.carRentalSystem.service.impl;
 
 import com.carRentalSystem.Exceptions.BookingNotFoundException;
 import com.carRentalSystem.domain.Booking;
+import com.carRentalSystem.dto.request.CreateBookingRequest;
 import com.carRentalSystem.dto.response.BookingResponse;
 import com.carRentalSystem.repositories.BookingRepository;
 import com.carRentalSystem.service.BookingService;
@@ -39,5 +40,22 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public boolean cancelBooking(Long bookingId) {
         return false;
+    }
+
+    //For the POST METHOD ===I.E CREATING AN OBJECT
+    @Override
+    public BookingResponse create(CreateBookingRequest bookingRequest) {
+        Booking booking = new Booking();
+       //I shouldnt set the id or get the id
+        booking.setUser(bookingRequest.getUser());
+        booking.setItems(bookingRequest.getItems());
+        booking = bookingRepository.save(booking);
+        return BookingResponse.from(booking);
+    }
+
+    //This is my update method making use of the @PutController
+    @Override
+    public BookingResponse updateBooking(Long bookingId, CreateBookingRequest bookingRequest) {
+        return null;
     }
 }
