@@ -27,5 +27,9 @@ public class Booking {
 
     @OneToMany(mappedBy = "booking", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Item>items = new ArrayList<>();
+    //=================================================
+    @Embedded
+    private AuditData auditData = new AuditData();
+    private Status status;
     
 }

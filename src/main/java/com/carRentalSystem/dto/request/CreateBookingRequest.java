@@ -9,6 +9,6 @@ import java.util.List;
 @Data
 public class CreateBookingRequest {
     private Long id;
-    private User user;
-    private List<Item> items = new ArrayList<>();
+    private User user; //get user from principal, not here
+    private List<ItemDTO> items = new ArrayList<>();
 }

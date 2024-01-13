@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping("/api/v1/order")
+@RequestMapping("/api/v1/booking")
 public class BookingController {
     @Autowired //we use service in a controller
     private BookingService bookingService;
@@ -34,5 +34,13 @@ public class BookingController {
         BookingResponse bookingResponse = bookingService.updateBooking(bookingId, bookingRequest);
         return new ResponseEntity<>(bookingResponse, HttpStatus.OK);
     }
-
+    @DeleteMapping("/{bookingId}")
+    public ResponseEntity<?>cancelBooking(@PathVariable Long bookingId){
+        try {
+            bookingService.deleteById(bookingId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Booking with ID " + bookingId + " not found", HttpStatus.NOT_FOUND);
+        }
+    }
 }

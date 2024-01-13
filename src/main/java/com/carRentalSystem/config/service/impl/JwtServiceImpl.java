@@ -61,7 +61,7 @@ public class JwtServiceImpl implements JwtService {
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()+1000*60*24))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
-                .compact(); //generates toekn
+                .compact(); //generates token
     }
 
     //mtd to validate a token

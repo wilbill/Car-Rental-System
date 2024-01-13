@@ -59,7 +59,6 @@ public class CarServiceImpl implements CarService {
 //        response.setMaximumOccupancy( car.getMaximumOccupancy());
 //        return response;
 
-
       return CarResponse.from(car);
 
     }

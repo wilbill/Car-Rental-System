@@ -1,11 +1,13 @@
 package com.carRentalSystem.controller;
 
+import com.carRentalSystem.domain.user.User;
 import com.carRentalSystem.dto.request.CreateCarRequest; //used when creating the car controller in post requests
 import com.carRentalSystem.dto.response.CarResponse;
 import com.carRentalSystem.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +21,8 @@ public class CarController {
 
     @GetMapping //works fine
     public ResponseEntity<?> getAllCars(){
+       User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println("principal = " + principal.getEmail());
         List<CarResponse> carResponseList = carService.findAll();
         return new ResponseEntity<>(carResponseList, HttpStatus.OK);
     }
